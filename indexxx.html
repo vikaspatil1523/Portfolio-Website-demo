@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #0b1a2e;
+        }
+
+        .hover-effect {
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .hover-effect:hover {
+            transform: translateY(-5px);
+            background-color: #172a45;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            z-index: 50;
+        }
+
+        .overlay-content {
+            transform: translateY(100%);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .overlay.active .overlay-content {
+            transform: translateY(0);
+        }
+
+        .profile-image-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .profile-image-container:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .profile-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.1), 0 0 0 20px rgba(255, 255, 255, 0.05);
+            pointer-events: none;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #4b5563;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: #6366f1;
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="text-white">
+
+    <!-- Main Page Content -->
+    <div class="min-h-screen flex flex-col items-center justify-center p-8">
+
+        <!-- Navigation Bar -->
+        <header class="w-full max-w-5xl flex items-center justify-between p-4 mb-16 rounded-full bg-slate-800 bg-opacity-50 backdrop-blur-sm shadow-lg hover-effect">
+            <h1 class="text-xl md:text-2xl font-bold tracking-wide">
+                <a href="#" class="text-indigo-400">JANE DOE</a>
+            </h1>
+            <nav class="space-x-4 md:space-x-8">
+                <a href="#" class="text-sm md:text-base text-gray-300 hover:text-indigo-400 transition-colors duration-300 nav-link" data-target="about">About</a>
+                <a href="#" class="text-sm md:text-base text-gray-300 hover:text-indigo-400 transition-colors duration-300 nav-link" data-target="portfolio">Portfolio</a>
+                <a href="#" class="text-sm md:text-base text-gray-300 hover:text-indigo-400 transition-colors duration-300 nav-link" data-target="contact">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="w-full max-w-5xl flex flex-col md:flex-row items-center justify-between gap-12 md:gap-24 px-4">
+            <div class="profile-image-container flex-shrink-0">
+                <!-- Placeholder image with a solid background and text -->
+                <img src="https://placehold.co/250x250/333333/FFFFFF?text=PROFILE" alt="Profile Image" class="w-full h-full object-cover rounded-full">
+            </div>
+
+            <div class="text-center md:text-left">
+                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-sky-400">
+                    Creative Designer
+                </h2>
+                <h3 class="text-xl md:text-2xl font-light text-gray-300 mb-6">
+                    Building beautiful digital experiences.
+                </h3>
+                <p class="text-base md:text-lg text-gray-400 max-w-xl mx-auto md:mx-0">
+                    A passionate and innovative developer with a keen eye for design. I turn ideas into elegant and functional products.
+                </p>
+                <div class="mt-8">
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover-effect nav-link" data-target="portfolio">
+                        View My Work
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- My Skills Section -->
+    <section class="w-full max-w-5xl mx-auto py-16 px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">My Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Skill: Photoshop -->
+            <div class="p-6 rounded-xl bg-slate-800 bg-opacity-50 shadow-lg hover-effect">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xl font-medium text-white">Photoshop</span>
+                    <span class="text-lg font-bold text-indigo-400">90%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 90%;"></div>
+                </div>
+            </div>
+            <!-- Skill: Illustrator -->
+            <div class="p-6 rounded-xl bg-slate-800 bg-opacity-50 shadow-lg hover-effect">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xl font-medium text-white">Illustrator</span>
+                    <span class="text-lg font-bold text-indigo-400">70%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 70%;"></div>
+                </div>
+            </div>
+            <!-- Skill: CorelDraw -->
+            <div class="p-6 rounded-xl bg-slate-800 bg-opacity-50 shadow-lg hover-effect">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xl font-medium text-white">CorelDraw</span>
+                    <span class="text-lg font-bold text-indigo-400">80%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%;"></div>
+                </div>
+            </div>
+            <!-- Skill: Filmora -->
+            <div class="p-6 rounded-xl bg-slate-800 bg-opacity-50 shadow-lg hover-effect">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xl font-medium text-white">Filmora</span>
+                    <span class="text-lg font-bold text-indigo-400">75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%;"></div>
+                </div>
+            </div>
+            <!-- Skill: Canva -->
+            <div class="p-6 rounded-xl bg-slate-800 bg-opacity-50 shadow-lg hover-effect">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-xl font-medium text-white">Canva</span>
+                    <span class="text-lg font-bold text-indigo-400">80%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 80%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overlay "Sub-Page" -->
+    <div id="overlay" class="overlay flex items-center justify-center p-8">
+        <div class="overlay-content w-full max-w-4xl p-10 bg-slate-800 rounded-2xl shadow-2xl relative">
+            
+            <button id="close-btn" class="absolute top-4 right-4 text-white text-3xl hover:text-gray-400 transition-colors duration-300">
+                &times;
+            </button>
+            
+            <h2 id="overlay-title" class="text-4xl font-bold mb-6 text-center text-indigo-400"></h2>
+            <div id="overlay-body" class="text-gray-300 text-lg leading-relaxed">
+                <!-- Content will be injected here via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('overlay');
+            const closeBtn = document.getElementById('close-btn');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const overlayTitle = document.getElementById('overlay-title');
+            const overlayBody = document.getElementById('overlay-body');
+
+            const pageContent = {
+                about: {
+                    title: 'About Me',
+                    body: `
+                        <p class="mb-4">Hello! I'm Jane Doe, a freelance designer and developer with a passion for creating engaging and user-friendly digital experiences. I specialize in crafting clean, modern interfaces that combine aesthetics with functionality.</p>
+                        <p class="mb-4">My journey began with a love for art and problem-solving, which naturally led me to the world of web design and development. I believe that great design is not just about how something looks, but also about how it works and feels to the user.</p>
+                        <p>When I'm not coding or designing, I enjoy hiking, photography, and exploring new technologies. I'm always looking for new challenges and opportunities to grow and learn.</p>
+                    `
+                },
+                portfolio: {
+                    title: 'My Portfolio',
+                    body: `
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="p-6 bg-slate-700 rounded-lg hover-effect">
+                                <h4 class="font-bold text-xl text-indigo-300">Project Alpha</h4>
+                                <p class="text-sm text-gray-400 mt-2">A sleek e-commerce platform built with React and Tailwind CSS.</p>
+                            </div>
+                            <div class="p-6 bg-slate-700 rounded-lg hover-effect">
+                                <h4 class="font-bold text-xl text-indigo-300">Project Beta</h4>
+                                <p class="text-sm text-gray-400 mt-2">A mobile-first application for managing personal finances.</p>
+                            </div>
+                            <div class="p-6 bg-slate-700 rounded-lg hover-effect">
+                                <h4 class="font-bold text-xl text-indigo-300">Project Gamma</h4>
+                                <p class="text-sm text-gray-400 mt-2">A data visualization dashboard for a leading tech company.</p>
+                            </div>
+                        </div>
+                    `
+                },
+                contact: {
+                    title: 'Get In Touch',
+                    body: `
+                        <p class="text-center mb-6">I'm always excited to connect with new people and discuss potential projects. Feel free to reach out to me via email or social media.</p>
+                        <div class="flex flex-col items-center space-y-4">
+                            <a href="mailto:jane.doe@example.com" class="text-lg md:text-xl text-indigo-400 hover:underline">jane.doe@example.com</a>
+                            <a href="#" class="text-lg md:text-xl text-gray-300 hover:text-white transition-colors duration-300">LinkedIn</a>
+                            <a href="#" class="text-lg md:text-xl text-gray-300 hover:text-white transition-colors duration-300">GitHub</a>
+                        </div>
+                    `
+                }
+            };
+
+            const showOverlay = (target) => {
+                const content = pageContent[target];
+                if (content) {
+                    overlayTitle.textContent = content.title;
+                    overlayBody.innerHTML = content.body;
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevents scrolling behind the overlay
+                }
+            };
+
+            const hideOverlay = () => {
+                overlay.classList.remove('active');
+                document.body.style.overflow = ''; // Re-enables scrolling
+            };
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = e.currentTarget.dataset.target;
+                    showOverlay(target);
+                });
+            });
+
+            closeBtn.addEventListener('click', hideOverlay);
+
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    hideOverlay();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
